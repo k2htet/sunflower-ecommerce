@@ -93,6 +93,8 @@ const Cart = () => {
   let total = cartItem.map((item) => item.total);
   total = total.reduce((a, b) => a + b, 0);
 
+  let ct = (total / 100) * 5;
+
   // modal handler
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -126,23 +128,24 @@ const Cart = () => {
                   spacing={3}
                   my={2}
                 >
-                  <Typography variant="subtitle1">Total:</Typography>
-                  <Typography variant="subtitle2">{total} mmk</Typography>
-                  <Stack spacing={2}>
-                    <Button
-                      variant="contained"
-                      size="small"
-                      onClick={handleOpen}
-                    >
-                      <Typography
-                        variant="body2"
-                        sx={{ color: "white", textTransform: "capitalize" }}
-                      >
-                        Check Out
-                      </Typography>
-                    </Button>
-                  </Stack>
+                  <Typography variant="subtitle1">
+                    Subtotal: {total} mmk
+                  </Typography>
+                  <Typography variant="subtitle1">CT : {ct} mmk</Typography>
+                  <Typography variant="subtitle1" fontWeight="bold">
+                    Grand Total : {total + ct} mmk
+                  </Typography>
                 </Stack>
+                <Box justifyContent="flex-end" sx={{ display: "flex" }}>
+                  <Button variant="contained" size="small" onClick={handleOpen}>
+                    <Typography
+                      variant="body2"
+                      sx={{ color: "white", textTransform: "capitalize" }}
+                    >
+                      Check Out
+                    </Typography>
+                  </Button>
+                </Box>
 
                 {/* check out modal */}
                 <MyModal
